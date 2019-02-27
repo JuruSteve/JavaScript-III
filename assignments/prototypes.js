@@ -70,7 +70,7 @@ Humanoid.prototype.greet = function() {
  */
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
-
+/*
 const mage = new Humanoid({
   createdAt: new Date(),
   dimensions: {
@@ -123,8 +123,43 @@ console.log(archer.language); // Elvish
 console.log(archer.greet()); // Lilith offers a greeting in Elvish.
 console.log(mage.takeDamage()); // Bruce took damage.
 console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-
+*/
 // Stretch task:
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
+function Villain(param) {
+  // Inherit all of Humanoid's properties
+  Humanoid.call(this, param);
+}
+// Inherit all of Humanoid's methods
+Villain.prototype = Object.create(Humanoid.prototype);
+
+function Hero(param) {
+  // Inherit all of Humanoid's properties
+  Humanoid.call(this, param);
+}
+// Inherit all of Humanoid's methods
+Hero.prototype = Object.create(Humanoid.prototype);
+
+// add a custom method to Hero's prototype
+Hero.prototype.strike = function(param) {
+  return `${this.name} strikes ${param.name} 3 times`;
+};
+
+const villain1 = new Villain({
+  name: "Villain1",
+  team: "Team Bad Boys"
+});
+const hero1 = new Hero({
+  name: "Hero1",
+  team: "Team Save The Day"
+});
+
+console.log(villain1.name);
+console.log(villain1.team);
+console.log(hero1.name);
+console.log(hero1.team);
+console.log(hero1.strike(villain1));
+console.log(villain1.takeDamage());
+
 // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
